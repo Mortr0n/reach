@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import DisplayOne from './components/DisplayOne';
+import {Router} from '@reach/router';
+import Home from './view/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Router>
+        {/* 2 components can't share a path so make a view component
+        to hold both components then call the sigle component */}
+        <Home path="/" />
+        {/* the display one component is set to handle 3 different options based
+        on whether or not they have a review and rating or just rating or neither */}
+        <DisplayOne path="/country/:countryCode"/>
+        <DisplayOne path="/country/:countryCode/:rating"/>
+        <DisplayOne path="/country/:countryCode/:rating/:review"/>
+      </Router>
     </div>
   );
 }
